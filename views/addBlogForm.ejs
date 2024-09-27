@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Blog</title>
+  <!-- Bootstrap CDN -->
+  <link
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    /* Custom styles */
+    body {
+      background-color: #F9E642;
+      font-family: Arial, sans-serif;
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container h1 {
+      color: #c90900;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      color: #c90900;
+      font-weight: bold;
+    }
+
+    .form-control {
+      border: 2px solid #c90900;
+      border-radius: 5px;
+    }
+
+    .btn-custom {
+      background-color: #c90900;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background-color: #a70700;
+    }
+
+    .btn-custom:focus {
+      outline: none;
+    }
+
+    .file-input {
+      padding-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h1>Add New Blog</h1>
+      <form action="/add-blog" method="POST" enctype="multipart/form-data">
+        <!-- Blog Title Field -->
+        <div class="form-group">
+          <label for="title">Blog Title:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="title"
+            id="title"
+            placeholder="Enter blog title"
+            required
+          />
+        </div>
+
+        <!-- Blog Content Field -->
+        <div class="form-group">
+          <label for="content">Blog Content:</label>
+          <textarea
+            class="form-control"
+            name="content"
+            id="content"
+            rows="5"
+            placeholder="Write your blog content here"
+            required
+          ></textarea>
+        </div>
+
+        <!-- Blog Image Field -->
+        <div class="form-group file-input">
+          <label for="image">Blog Image:</label>
+          <input
+            type="file"
+            class="form-control-file"
+            name="image"
+            id="image"
+            accept="image/*"
+            required
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-custom btn-block">
+          Add Blog
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (Optional for interactions) -->
+  <script
+    src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"
+    integrity="sha384-pzjw8f+ua7Kw1TIqbbVb1zEAdq3YQSR3+c2fjFjaazTvWBA8FHMf6cGCKrOjjpJ5"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgEPQn81zZVxr5pHGoSfdAaBzXrF/J3pQ6ANyJwGhD5OwIw5T2w"
+    crossorigin="anonymous"
+  ></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* General Styles */
+    body {
+        background-color: #F9E642;
+    }
+
+    /* Colors */
+    .bg-maroon {
+        background-color: #a05252;
+    }
+
+    .text-maroon {
+        color: #a05252;
+    }
+
+    .btn-maroon {
+        background-color: #a05252;
+        color: #fff;
+        border: none;
+    }
+
+    .btn-maroon:hover {
+        background-color: #904545;
+    }
+
+    .bg-light-gray {
+        background-color: #f8f9fa;
+    }
+
+    /* Card Styling */
+    .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        background-color: #a05252;
+        color: white;
+    }
+
+    .card-footer a {
+        color: #a05252;
+    }
+
+    .card-footer a:hover {
+        color: #904545;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-header text-center text-light bg-maroon">
+                        <h3>Login</h3>
+                    </div>
+                    <div class="card-body bg-light-gray">
+                        <form action="/login" method="POST">
+                            <div class="form-group">
+                                <label for="email" class="text-maroon">Email Address</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="text-maroon">Password</label>
+                                <input type="password" class="form-control" id="password"
+                                    placeholder="Enter your password" name="password">
+                            </div>
+                            <button type="submit" class="btn btn-maroon btn-block">Login</button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-center">
+                        <small class="text-muted">Don't have an account? <a href="/signup">Sign up here</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

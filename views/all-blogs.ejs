@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>All Blogs</h1>
+  <ul>
+    <% blogs.forEach(blog=> { %>
+      <li>
+        <h2>
+          <%= blog.title %>
+        </h2>
+        <p>By: <%= blog.user.username %>
+        </p>
+        <p>
+          <%= blog.content %>
+        </p>
+        <% if (blog.image) { %>
+          <img src="/uploads/<%= blog.image %>" alt="<%= blog.title %>">
+          <% } %>
+      </li>
+      <% }) %>
+  </ul>
+</body>
+
+</html>
