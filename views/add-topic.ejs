@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Topic Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* General Styles */
+    body {
+        background-color: #F9E642;
+    }
+
+    /* Colors */
+    .bg-maroon {
+        background-color: #a05252;
+    }
+
+    .text-maroon {
+        color: #a05252;
+    }
+
+    .btn-maroon {
+        background-color: #a05252;
+        color: #fff;
+        border: none;
+    }
+
+    .btn-maroon:hover {
+        background-color: #904545;
+    }
+
+    .bg-light-gray {
+        background-color: #f8f9fa;
+    }
+
+    /* Card Styling */
+    .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        background-color: #a05252;
+        color: white;
+    }
+
+    .card-footer a {
+        color: #a05252;
+    }
+
+    .card-footer a:hover {
+        color: #904545;
+    }
+
+
+    /* Table UI css */
+
+    .table-hover tbody tr:hover {
+        background-color: #2e2e2e;
+    }
+
+    .table thead th {
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+    .btn-sm:hover {
+        background-color: #cc3333;
+    }
+
+    a:hover {
+        color: #ffcccc;
+    }
+</style>
+</style>
+
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-header text-center text-light bg-maroon">
+                        <h3>Add Topic</h3>
+                    </div>
+                    <div class="card-body bg-light-gray">
+                        <form action="/submitTopic" method="POST">
+                            <div class="form-group">
+                                <label for="topic" class="text-maroon">Topic Name</label>
+                                <input type="text" class="form-control" id="topic" placeholder="Enter topic name"
+                                    name="topicname" required>
+                            </div>
+                            <button type="submit" class="btn btn-maroon btn-block">Add Topic</button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-center">
+                        <small class="text-muted">Want to go back? <a href="/">Home</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- Show All Topics -->
+
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center" style="color: #cc3333;">All Blogs Title</h2>
+        <table class="table table-bordered" style="background-color: #1c1c1c; color: white; border-color: #444;">
+            <thead class="table-dark">
+                <tr style="background-color: #000;">
+                    <th style="border-color: #444;">Title</th>
+                    <th style="border-color: #444;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% dataTitle.forEach((user)=>{ %>
+                    <tr style="transition: background-color 0.3s;">
+                        <td style="border-color: #444;">
+                            <%= user.topicName %>
+                        </td>
+                        <td style="border-color: #444;">
+                            <button class="btn btn-danger btn-sm" style="background-color: #ff3d3d; border: none;">
+                                <a href="/deleteTitle/<%= user._id %>" style="color: white; text-decoration: none;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path
+                                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                        <path
+                                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                                    </svg>
+                                </a>
+                            </button>
+                        </td>
+                    </tr>
+                    <% })%>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

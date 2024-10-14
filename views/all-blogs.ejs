@@ -4,28 +4,190 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>All Blogs</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    h1 {
+      font-family: 'Roboto', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      margin-bottom: 40px;
+      background: linear-gradient(90deg, #2c3e50, #3498db);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+    }
+
+    .container-title {
+      margin-top: 50px;
+      margin-bottom: 30px;
+    }
+
+    h1::after {
+      content: '';
+      display: block;
+      width: 150px;
+      height: 4px;
+      margin: 10px auto 0;
+      background-color: #e74c3c;
+      border-radius: 2px;
+    }
+
+    body {
+      background-color: #F9E642;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    /* Custom styles for the blog cards */
+    .card {
+      border: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+
+    .card img {
+      height: 200px;
+      object-fit: cover;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .card-text {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .card p.card-text {
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    /* Button Styling */
+    .btn-primary {
+      background-color: #ff2a1f;
+      border: none;
+      font-size: 0.95rem;
+      transition: background-color 0.3s ease;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    .btn-primary:hover {
+      background-color: #c90900;
+    }
+
+    /* Modal Styling */
+    .modal-content {
+      border-radius: 15px;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+
+    .modal-header {
+      border-bottom: none;
+    }
+
+    .modal-footer {
+      border-top: none;
+    }
+
+    /* Responsiveness for smaller devices */
+    @media (max-width: 768px) {
+      .card img {
+        height: 150px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <h1>All Blogs</h1>
-  <ul>
-    <% blogs.forEach(blog=> { %>
-      <li>
-        <h2>
-          <%= blog.title %>
-        </h2>
-        <p>By: <%= blog.user.username %>
-        </p>
-        <p>
-          <%= blog.content %>
-        </p>
-        <% if (blog.image) { %>
-          <img src="/uploads/<%= blog.image %>" alt="<%= blog.title %>">
-          <% } %>
-      </li>
-      <% }) %>
-  </ul>
+  <div class="container my-5">
+    <h1 class="text-center mb-4">All Blogs</h1>
+    <div class="row">
+      <% blogs.forEach((blog, index)=> { %>
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm h-100">
+            <% if (blog.image) { %>
+              <img src="/upload/<%= blog.image %>" class="card-img-top" alt="<%= blog.title %>">
+              <% } %>
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= blog.title %>
+                  </h5>
+                  <p class="card-text" style="text-decoration: underline; color: #c90900;">By:
+                    <% if (blog.user) { %>
+                      <%= blog.user.fname %>
+                        <% } else { %>
+                          Anonymous
+                          <% } %>
+                  </p>
+                  <p class="card-text">
+                    <%= blog.content.substring(0, 150) %>...
+                  </p>
+                  <!-- Read More Button that triggers the modal -->
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#blogModal<%= index %>">
+                    Read More
+                  </button>
+                </div>
+          </div>
+        </div>
+
+        <!-- Modal for each blog -->
+        <div class="modal fade" id="blogModal<%= index %>" tabindex="-1" aria-labelledby="blogModalLabel<%= index %>"
+          aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="blogModalLabel<%= index %>">
+                  <%= blog.title %>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <% if (blog.image) { %>
+                  <img src="/upload/<%= blog.image %>" class="img-fluid mb-3" alt="<%= blog.title %>">
+                  <% } %>
+                    <p style="text-decoration: underline; color: #c90900;">By:
+                      <% if (blog.user) { %>
+                        <%= blog.user.fname %>
+                          <% } else { %>
+                            Anonymous
+                            <% } %>
+                    </p>
+                    <p>
+                      <%= blog.content %>
+                    </p> <!-- Full content displayed in the modal -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <% }) %>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Reset Password</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <style>
     /* General Styles */
     body {
@@ -63,36 +64,30 @@
             <div class="col-md-6">
                 <div class="card mt-5">
                     <div class="card-header text-center text-light bg-maroon">
-                        <h3>Login</h3>
+                        <h3>Reset Password</h3>
                     </div>
                     <div class="card-body bg-light-gray">
-                        <form action="/login" method="POST">
-                            <div class="form-group">
-                                <label for="email" class="text-maroon">Email Address</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter your email" name="email">
+                        <form action="/resetPassword/<%= id %>" method="POST">
+                            <div class="form-group mb-3">
+                                <label for="newPassword" class="text-maroon">New Password</label>
+                                <input type="password" class="form-control" id="newPassword" placeholder="Enter new password" name="newPassword" required>
                             </div>
-                            <div class="form-group">
-                                <label for="password" class="text-maroon">Password</label>
-                                <input type="password" class="form-control" id="password"
-                                    placeholder="Enter your password" name="password">
+                            <div class="form-group mb-3">
+                                <label for="confirmPassword" class="text-maroon">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" name="confirmPassword" required>
                             </div>
-                            <div class="form-group">
-                                <a href="/forgotPass" style="color: #a05252;"><u>Forgot Password?</u></a>
-                            </div>
-                            <button type="submit" class="btn btn-maroon btn-block">Login</button>
+                            <button type="submit" class="btn btn-maroon btn-block">Reset Password</button>
                         </form>
                     </div>
                     <div class="card-footer text-center">
-                        <small class="text-muted">Don't have an account? <a href="/signup">Sign up here</a></small>
+                        <small class="text-muted">Back to <a href="/login">Login</a></small>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

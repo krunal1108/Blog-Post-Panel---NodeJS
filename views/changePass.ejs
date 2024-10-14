@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
+    <title>Change Password Form</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -63,27 +63,27 @@
             <div class="col-md-6">
                 <div class="card mt-5">
                     <div class="card-header text-center text-light bg-maroon">
-                        <h3>Login</h3>
+                        <h3>Change Password</h3>
                     </div>
                     <div class="card-body bg-light-gray">
-                        <form action="/login" method="POST">
+                        <form action="/updatePass" method="POST">
                             <div class="form-group">
-                                <label for="email" class="text-maroon">Email Address</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter your email" name="email">
+                                <label for="current-password" class="text-maroon">Current Password</label>
+                                <input type="password" class="form-control" id="current-password" placeholder="Enter your current password" name="current_password">
                             </div>
                             <div class="form-group">
-                                <label for="password" class="text-maroon">Password</label>
-                                <input type="password" class="form-control" id="password"
-                                    placeholder="Enter your password" name="password">
+                                <label for="new-password" class="text-maroon">New Password</label>
+                                <input type="password" class="form-control" id="new-password" placeholder="Enter your new password" name="new_password">
                             </div>
                             <div class="form-group">
-                                <a href="/forgotPass" style="color: #a05252;"><u>Forgot Password?</u></a>
+                                <label for="confirm-password" class="text-maroon">Confirm New Password</label>
+                                <input type="password" class="form-control" id="confirm-password" placeholder="Confirm your new password" name="confirm_password">
                             </div>
-                            <button type="submit" class="btn btn-maroon btn-block">Login</button>
+                            <button type="submit" class="btn btn-maroon btn-block">Change Password</button>
                         </form>
                     </div>
                     <div class="card-footer text-center">
-                        <small class="text-muted">Don't have an account? <a href="/signup">Sign up here</a></small>
+                        <small class="text-muted">Go back to <a href="/login"><b>Login</b></a></small>
                     </div>
                 </div>
             </div>

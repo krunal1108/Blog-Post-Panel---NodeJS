@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
+    <title>Add Topic Form</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -54,6 +54,27 @@
     .card-footer a:hover {
         color: #904545;
     }
+
+
+    /* Table UI css */
+
+    .table-hover tbody tr:hover {
+        background-color: #2e2e2e;
+    }
+
+    .table thead th {
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+    .btn-sm:hover {
+        background-color: #cc3333;
+    }
+
+    a:hover {
+        color: #ffcccc;
+    }
+</style>
 </style>
 
 <body>
@@ -63,32 +84,44 @@
             <div class="col-md-6">
                 <div class="card mt-5">
                     <div class="card-header text-center text-light bg-maroon">
-                        <h3>Login</h3>
+                        <h3>Add Sub Topic</h3>
                     </div>
                     <div class="card-body bg-light-gray">
-                        <form action="/login" method="POST">
+                        <form action="/submitSubTopic" method="POST">
                             <div class="form-group">
-                                <label for="email" class="text-maroon">Email Address</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter your email" name="email">
+                                <label for="subtopic" class="text-maroon">Sub Topic Name</label>
+                                <input type="text" class="form-control" id="subtopic" placeholder="Enter sub topic name" name="subtopic" required>
+                        
+                                <label for="topicname" class="text-maroon" style="margin-top: 12px;">Choose a Topic</label><br>
+                                <select id="topicname" name="topicname" style="width: 35%;">
+                                    <% topic.forEach((Alltopic) => { %>
+                                        <option value="<%= Alltopic._id %>"><%= Alltopic.topicName %></option>
+                                    <% }); %>
+                                </select>
                             </div>
-                            <div class="form-group">
-                                <label for="password" class="text-maroon">Password</label>
-                                <input type="password" class="form-control" id="password"
-                                    placeholder="Enter your password" name="password">
-                            </div>
-                            <div class="form-group">
-                                <a href="/forgotPass" style="color: #a05252;"><u>Forgot Password?</u></a>
-                            </div>
-                            <button type="submit" class="btn btn-maroon btn-block">Login</button>
+                            <button type="submit" class="btn btn-maroon btn-block">Add Sub Topic</button>
                         </form>
+                        
                     </div>
                     <div class="card-footer text-center">
-                        <small class="text-muted">Don't have an account? <a href="/signup">Sign up here</a></small>
+                        <small class="text-muted">Want to go back? <a href="/">Home</a></small>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>

@@ -16,6 +16,8 @@ router.post('/add-blog', ensureAuthenticated, upload.single('image'), blogContro
 
 // Other routes
 router.get('/all-blogs', blogController.viewAllBlogs);
+
+
 router.get('/my-blogs', ensureAuthenticated, blogController.viewMyBlogs);
 router.post('/edit-blog/:id', ensureAuthenticated, upload.single('image'), blogController.editBlog);
 // Get blog details by ID and render the edit form

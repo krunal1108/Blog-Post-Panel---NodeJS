@@ -1,4 +1,6 @@
 const Blog = require('../models/blog');  // Assuming you have a Blog model
+const User = require('../models/adminPanelModel'); // Path to your User model
+
 
 
 // Render the form for adding a new blog
@@ -17,8 +19,8 @@ const addBlog = async (req, res) => {
             user: req.user.id  // Assuming you store the logged-in user info in req.user
         });
 
-        console.log("newblog",newBlog);
-        
+        console.log("newblog", newBlog);
+
 
         await newBlog.save();
         res.redirect('/my-blogs');  // Redirect to 'My Blogs' page after successful creation
@@ -27,7 +29,7 @@ const addBlog = async (req, res) => {
         res.status(500).send('Server Error');
     }
     console.log("ADDED Blog Succesfully..");
-    
+
 };
 
 // Render the form to edit an existing blog
@@ -115,14 +117,34 @@ const deleteBlog = async (req, res) => {
 
 
 // View all blogs
+// const viewAllBlogs = async (req, res) => {
+//     try {
+//         const blogs = await Blog.find().populate('user');
+//         res.render('all-blogs', { blogs });
+//     } catch (error) {
+//         res.status(500).send('Error fetching blogs');
+//     }
+// };
+
+
 const viewAllBlogs = async (req, res) => {
     try {
-        const blogs = await Blog.find().populate('user', 'username');
+        const blogs = await Blog.find().populate('user'); // This will work once User is registered
+        console.log("ALL BLOGA YEEEHHHHHHHH>>>>>>", blogs);
+        
+        if (!blogs || blogs.length === 0) {
+            return res.status(404).send('No blogs found');
+        }
         res.render('all-blogs', { blogs });
     } catch (error) {
+        console.error('Error fetching blogs:', error);
         res.status(500).send('Error fetching blogs');
     }
 };
+
+
+
+
 
 // View user's blogs
 const viewMyBlogs = async (req, res) => {
