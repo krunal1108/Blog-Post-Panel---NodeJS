@@ -8,6 +8,7 @@ let myOTP = null;
 const randomstring = require("randomstring");
 const addTitle = require('../models/addTitle');
 const addSubTitle = require('../models/addSubTitle');
+// const allBlogs = require('../models/blog');
 // const { log } = require('util');
 
 
@@ -470,7 +471,7 @@ const submitTopicController = async (req, res) => {
     });
     console.log("Topic Name", topic);
 
-    
+
     try {
         const topicData = new addTitle(topic);
         await topicData.save();
@@ -557,6 +558,7 @@ const submitTopicandSubTopic = async (req, res) => {
         const subTopic = new addSubTitle({
             SubTitle: subtopic,
             topicName: topic._id // Reference the topic
+            
         });
         const newSubTopic = await subTopic.save();
 
@@ -572,6 +574,15 @@ const submitTopicandSubTopic = async (req, res) => {
         res.status(500).send('Error occurred while submitting the Sub Topic');
     }
 };
+
+
+
+
+
+
+
+
+
 
 
 

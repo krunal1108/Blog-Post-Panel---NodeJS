@@ -1,5 +1,6 @@
 const Blog = require('../models/blog');  // Assuming you have a Blog model
 const User = require('../models/adminPanelModel'); // Path to your User model
+const commentModel = require('../models/commentModel');
 
 
 
@@ -130,7 +131,7 @@ const deleteBlog = async (req, res) => {
 const viewAllBlogs = async (req, res) => {
     try {
         const blogs = await Blog.find().populate('user'); // This will work once User is registered
-        console.log("ALL BLOGA YEEEHHHHHHHH>>>>>>", blogs);
+        console.log("ALL BLOG YEEEHHHHHHHH>>>>>>", blogs);
         
         if (!blogs || blogs.length === 0) {
             return res.status(404).send('No blogs found');
@@ -160,4 +161,31 @@ const viewMyBlogs = async (req, res) => {
 
 
 
-module.exports = { getEditBlog, addBlog, editBlog, deleteBlog, viewAllBlogs, viewMyBlogs, getAddBlogForm }
+
+
+const commentStorage = async (req, res)=>{
+    try {
+        const commentsAll = new commentModel({
+            comment: req.body.commentBox,
+            blog: req.params.id,    
+            user: req.user._id,
+        });
+
+        console.log("Comment Section:- ", commentsAll);
+        const commentBlogData = new commentModel(commentsAll);
+        await commentBlogData.save();
+        
+        console.log("COMMENT!!!!!", commentBlogData);
+        
+        res.redirect('/all-blogs');
+    } catch (error) {
+        console.log("ERROR adding comment:- ",error);
+        res.redirect('/');
+    }
+}
+
+
+
+
+
+module.exports = { getEditBlog, addBlog, editBlog, deleteBlog, viewAllBlogs, viewMyBlogs, getAddBlogForm, commentStorage }

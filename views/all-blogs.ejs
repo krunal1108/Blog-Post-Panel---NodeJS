@@ -175,6 +175,18 @@
                     <p>
                       <%= blog.content %>
                     </p> <!-- Full content displayed in the modal -->
+
+
+                    <!-- Comments Form -->
+                    
+                      <form action="/commentStore/<%= blog._id %>" method="POST">
+                        <input type="text" name="commentBox"/>
+                        <button type="submit">Submit Comment</button>
+                      </form>
+                  
+                   
+                  
+
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

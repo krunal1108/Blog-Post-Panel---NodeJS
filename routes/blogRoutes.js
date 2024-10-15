@@ -4,6 +4,7 @@ const blogController = require('../controllers/blogController');
 const upload = require('../middleware/multer');
 const { ensureAuthenticated } = require('../middleware/auth');
 
+
 // Display the form to add a new blog
 router.get('/add-blog', ensureAuthenticated, (req, res) => {
   res.render('addBlogForm');
@@ -25,6 +26,7 @@ router.get('/edit-blog/:id', ensureAuthenticated, blogController.getEditBlog);
 
 router.post('/delete-blog/:id', ensureAuthenticated, blogController.deleteBlog);
 // router.delete('/delete-blog/:id', ensureAuthenticated, blogController.deleteBlog);
+router.post('/commentStore/:id', blogController.commentStorage);
 
 
 module.exports = router;
