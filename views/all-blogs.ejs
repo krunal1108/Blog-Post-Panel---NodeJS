@@ -108,6 +108,47 @@
       border-top: none;
     }
 
+    
+
+    /* Custom styles for comment boxes */
+    .comment-boxes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .comment-box {
+      flex: 1 1 100%;
+      background-color: #f1f1f1;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+    }
+
+    .comment-text {
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .comment-user {
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    /* Responsiveness for smaller devices */
+    @media (min-width: 768px) {
+      .comment-box {
+        flex: 1 1 calc(50% - 10px);
+      }
+    }
+
+    @media (min-width: 992px) {
+      .comment-box {
+        flex: 1 1 calc(33.333% - 10px);
+      }
+    }
+
     /* Responsiveness for smaller devices */
     @media (max-width: 768px) {
       .card img {
@@ -168,24 +209,37 @@
                     <p style="text-decoration: underline; color: #c90900;">By:
                       <% if (blog.user) { %>
                         <%= blog.user.fname %>
-                          <% } else { %>
-                            Anonymous
-                            <% } %>
+                          <% } else { %> Anonymous <% } %>
                     </p>
                     <p>
                       <%= blog.content %>
-                    </p> <!-- Full content displayed in the modal -->
+                    </p>
 
+                    <!-- Display Comments -->
+                    <h4>Comments:</h4>
+                    <div class="comment-boxes">
+                      <% const blogComments=commentsData.filter(comment=> comment.blog._id.toString() ===
+                        blog._id.toString()); %>
+                        <% if (blogComments.length> 0) { %>
+                          <% blogComments.forEach((comment)=> { %>
+                            <div class="comment-box mb-2 p-3">
+                              <h5 class="comment-text">Comment: <%= comment.comment %>
+                              </h5>
+                              <span class="comment-user">By: <%= comment.user ? comment.user.fname : 'Anonymous' %>
+                              </span>
+                            </div>
+                            <% }) %>
+                              <% } else { %>
+                                <p>No comments yet.</p>
+                                <% } %>
+                    </div>
 
                     <!-- Comments Form -->
-                    
-                      <form action="/commentStore/<%= blog._id %>" method="POST">
-                        <input type="text" name="commentBox"/>
-                        <button type="submit">Submit Comment</button>
-                      </form>
-                  
-                   
-                  
+                    <form action="/commentStore/<%= blog._id %>" method="POST" class="mt-3">
+                      <input type="text" name="commentBox" placeholder="Add a comment" class="form-control mb-2"
+                        required />
+                      <button type="submit" class="btn btn-primary">Submit Comment</button>
+                    </form>
 
               </div>
               <div class="modal-footer">
@@ -194,6 +248,7 @@
             </div>
           </div>
         </div>
+
 
         <% }) %>
     </div>

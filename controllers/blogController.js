@@ -128,20 +128,55 @@ const deleteBlog = async (req, res) => {
 // };
 
 
+// const viewAllBlogs = async (req, res) => {
+//     try {
+//         const blogs = await Blog.find().populate('user');
+//         console.log("ALL BLOG YEEEHHHHHHHH>>>>>>", blogs);
+
+//         const commentsData = await commentModel.find({}).populate({
+//             path:'blog', populate: {
+//                 path: 'user'
+//             }
+//         }).populate('user');
+
+//         console.log("Comment All Data",commentsData);
+
+//         const data = await Blog.find();
+
+
+//         if (!blogs || blogs.length === 0) {
+//             return res.status(404).send('No blogs found');
+//         }
+//         res.render('all-blogs', { blogs, commentsData, data });
+//     } catch (error) {
+//         console.error('Error fetching blogs:', error);
+//         res.status(500).send('Error fetching blogs');
+//     }
+// };
+
 const viewAllBlogs = async (req, res) => {
     try {
-        const blogs = await Blog.find().populate('user'); // This will work once User is registered
-        console.log("ALL BLOG YEEEHHHHHHHH>>>>>>", blogs);
-        
+        // Fetch blogs with user data
+        const blogs = await Blog.find().populate('user', 'fname');
+
+        // Fetch all comments with associated blog and user data
+        const commentsData = await commentModel.find().populate({
+            path: 'blog',
+            select: '_id', // Only fetching the blog ID for matching
+            populate: { path: 'user', select: 'fname' } // Populating user info for the blog
+        }).populate('user', 'fname');
+
         if (!blogs || blogs.length === 0) {
             return res.status(404).send('No blogs found');
         }
-        res.render('all-blogs', { blogs });
+
+        res.render('all-blogs', { blogs, commentsData });
     } catch (error) {
         console.error('Error fetching blogs:', error);
         res.status(500).send('Error fetching blogs');
     }
 };
+
 
 
 
@@ -163,26 +198,47 @@ const viewMyBlogs = async (req, res) => {
 
 
 
-const commentStorage = async (req, res)=>{
+// const commentStorage = async (req, res) => {
+//     try {
+//         const commentsAll = new commentModel({
+//             comment: req.body.commentBox,
+//             blog: req.params.id,
+//             user: req.user._id,
+//         });
+
+//         console.log("Comment Section:- ", commentsAll);
+//         const commentBlogData = new commentModel(commentsAll);
+//         await commentBlogData.save();
+
+//         console.log("COMMENT!!!!!", commentBlogData);
+
+//         res.redirect('/all-blogs');
+//     } catch (error) {
+//         console.log("ERROR adding comment:- ", error);
+//         res.redirect('/');
+//     }
+// }
+
+const commentStorage = async (req, res) => {
     try {
-        const commentsAll = new commentModel({
+        // Create new comment with the associated blog and user
+        const newComment = new commentModel({
             comment: req.body.commentBox,
-            blog: req.params.id,    
+            blog: req.params.id,
             user: req.user._id,
         });
 
-        console.log("Comment Section:- ", commentsAll);
-        const commentBlogData = new commentModel(commentsAll);
-        await commentBlogData.save();
-        
-        console.log("COMMENT!!!!!", commentBlogData);
-        
+        // Save the comment to the database
+        await newComment.save();
+        console.log("New Comment Added: ", newComment);
+
+        // Redirect back to the all-blogs page after submission
         res.redirect('/all-blogs');
     } catch (error) {
-        console.log("ERROR adding comment:- ",error);
+        console.error("Error adding comment:", error);
         res.redirect('/');
     }
-}
+};
 
 
 

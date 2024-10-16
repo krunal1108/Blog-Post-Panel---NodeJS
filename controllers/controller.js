@@ -312,9 +312,9 @@ const checkUserContoller = async (req, res) => {
     console.log("User ", userData);
 
     if (userData) {
-        // let otp = otpGenerator.generate(4, { upperCaseAlphabets: false, specialChars: false, lowerCaseAlphabets: false });
-        // myOTP = otp;
-        // console.log("Generated OTP:", otp);
+        let otp = otpGenerator.generate(4, { upperCaseAlphabets: false, specialChars: false, lowerCaseAlphabets: false });
+        myOTP = otp;
+        console.log("Generated OTP:", otp);
 
         const token = randomstring.generate();
         console.log("token", token);
@@ -322,9 +322,9 @@ const checkUserContoller = async (req, res) => {
         await modelsmsg.updateOne({ _id: userData.id }, { resetToken: token })
 
 
-        const link = `http://localhost:3012/resetPassword/${userData._id}`;
-        console.log("LINK for Forgot password..>>>", link);
-        res.redirect('/forgotPass');
+        // const link = `http://localhost:3012/resetPassword/${userData._id}`;
+        // console.log("LINK for Forgot password..>>>", link);
+        // res.redirect('/forgotPass');
 
 
 
@@ -332,7 +332,7 @@ const checkUserContoller = async (req, res) => {
             from: 'krunalkotadiya2004@gmail.com',
             to: userData.email,
             subject: 'Forgot Password OTP',
-            text: `Your Reset Password Link is: ${link}`
+            text: `Your Reset Password Link is: ${otp}`
         };
 
         transporter.sendMail(mailOptions, (error, info) => {
