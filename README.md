@@ -1,4 +1,4 @@
-**Overview:**
+![screencapture-localhost-3013-all-blogs-2024-10-16-18_09_09](https://github.com/user-attachments/assets/9ab6bca0-afd7-4dfc-9083-d7879351bfa7)**Overview:**
 
 
 
@@ -148,6 +148,21 @@ My Blogs Page: A page where logged-in users can view, edit, or delete only their
 
 **5.My Blogs**
 
-![screencapture-localhost-3011-my-blogs-2024-09-27-18_28_05](https://github.com/user-attachments/assets/4cf67123-e07c-4e2c-a8c0-1de30da01a16)
+![screencapture-localhost-3013-my-blogs-2024-10-16-18_07_54](https://github.com/user-attachments/assets/d13f3d81-5c64-4367-8c64-2ed59b7b617e)
+
+
+
+
+**6. All Creators Blogs**
+
+![screencapture-localhost-3013-all-blogs-2024-10-16-18_08_23](https://github.com/user-attachments/assets/e47bc18b-499c-4cab-b767-6fa9026f57cc)
+
+
+
+
+**7. View Full Blog**
+
+![screencapture-localhost-3013-all-blogs-2024-10-16-18_09_09](https://github.com/user-attachments/assets/0aa0ee40-4ec5-4119-87c5-81aa1fef55d9)
+
 
 
